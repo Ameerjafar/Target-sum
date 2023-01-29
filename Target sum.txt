@@ -1,0 +1,18 @@
+class Solution {
+     static int helper(int[] nums,int ind,int target,int sum){
+       if(ind==nums.length){
+           if(sum==target){
+               return 1;
+           }
+           else return 0;
+       }
+       // if(dp[ind][target]!=-1){
+       //     return dp[ind][target];
+       // }
+       int positive=helper(nums,ind+1,target,sum+nums[ind]);
+       int negative=helper(nums,ind+1,target,sum-nums[ind]);
+       return positive+negative;
+   }
+    public int findTargetSumWays(int[] nums, int target) {
+        return helper(nums,0,target,0);
+    }
